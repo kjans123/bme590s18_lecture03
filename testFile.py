@@ -19,7 +19,7 @@ def getUniqueNames(allTeamNames):
     return filterNames2
 
 def checkCamelCase(uniqueSet):
-
+    import sys
     counter = 0
     counter2 = 0
     for i in range(len(uniqueSet)):
@@ -34,6 +34,7 @@ def checkCamelCase(uniqueSet):
                 print("is camel case")
                 counter = counter + 1
     print(counter)
+    sys.stdout.write(str(counter))
     return(counter)
 
 def convertCSVtoJSON(pdDataFrame,JSONfileName):
@@ -52,7 +53,8 @@ def read_csv(passed_List):
     framesList = []
     teamNamesList = []
     for i in range(len(passed_List)):
-        fileNameJSON = passed_List[i]
+        firstPassString = passed_List[i]
+        fileNameJSON = firstPassString.replace(".csv","")
         df = pd.read_csv(passed_List[i],header=None)
         convertCSVtoJSON(df,fileNameJSON)
         dfArray = df.values
